@@ -1,0 +1,44 @@
+version: '3.9'
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/os/Dockerfile
+      args:
+        - DOCKER_BUILD_OS=${DOCKER_BUILD_OS}
+        - DOCKER_BUILD_OS_VERSION=${DOCKER_BUILD_OS_VERSION}
+    container_name: ${DOCKER_WEB_CONTAINER_NAME}
+    volumes:
+      # Volume definition format => local path:path in container
+      # For laravel, this docker-compose.yml should be located in the root directory
+      - .:/var/www/html
+      # Preconfigured php.ini file should be in the `docker/php/${DOCKER_PHP_VERSION}` folder
+      # Note: Double check phpinfo() to determine where php.ini is loaded from
+      # - ./docker/php/${DOCKER_PHP_VERSION}/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php/${DOCKER_PHP_VERSION}/php.ini:/etc/php/${DOCKER_PHP_VERSION}/apache2/php.ini
+      # VirtualHost definition file
+      - ./docker/apache/apache.conf:/etc/apache2/sites-available/000-default.conf
+      # Log folder
+      - ./storage/logs:/var/log
+    ports:
+      # local port (i.e. localhost:8000): port in container
+      - ${DOCKER_WEB_PORT_NUMBER}:80
+
+  # db:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/mysql/Dockerfile
+  #     args:
+  #       - DOCKER_BUILD_MYSQL_VERSION=${DOCKER_BUILD_MYSQL_VERSION}
+  #   container_name: ${DOCKER_DB_CONTAINER_NAME}
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+  #     MYSQL_DATABASE: ${DB_DATABASE}
+  #   volumes:
+  #     - ./database/mysql:/var/lib/mysql
+  #     - ./storage/logs/mysql:/var/log/mysql
+  #     - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  #   # restart: always
+  #   ports:
+  #     - 3306:3306
