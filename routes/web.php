@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/sample-chart', function () {
+    return view('samples.chart');
+});
+
+Route::get('/sample-component', function () {
+    return view('samples.component');
+});
 
 Route::get('/phpinfo', function () {
     return view('phpinfo');

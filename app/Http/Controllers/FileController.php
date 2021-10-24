@@ -36,9 +36,9 @@ class FileController extends Controller
     }
 
     /**
-     * Process census file, retrieve 3rd column (7_2009)
+     * Process census file, return a list of numbers by extracting the first character of the 3rd column
      */
-    public static function processDataFile(\Illuminate\Http\UploadedFile $uploadedFile)
+    public static function processDataFile(\Illuminate\Http\UploadedFile $uploadedFile): array
     {
         $fileDirectory = 'uploads';
         $fileName = 'tmp-file';
@@ -48,8 +48,14 @@ class FileController extends Controller
         $file = fopen($filePath, "r");
         $results = [];
         while (($row = fgetcsv($file, 1000, "\t")) !== false) {
-            // Todo: Ignore 1st row
-            $results[] = substr($row[2], 0, 1);     // Get 1st digit only
+            $firstCharacter = substr($row[2], 0, 1);
+
+            if (!is_numeric($firstCharacter)) {
+                // Ignore if it is not a number
+                continue;
+            }
+
+            $results[] = $firstCharacter;
         }
 
         array_shift($results);      // Remove first element which is the label 7_2009
