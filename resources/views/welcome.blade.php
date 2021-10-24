@@ -49,14 +49,14 @@
 
                     <v-col cols="12" sm="6">
                         <bar-chart
-                            bar-data-background-color="blue"
+                            bar-data-background-color="#ccf"
                             :percentage="percentageExpectedOfNumberOne"
                             title="Expected Result"
                         />
                     </v-col>
                     <v-col cols="12" sm="6">
                         <bar-chart
-                            bar-data-background-color="red"
+                            bar-data-background-color="#fcc"
                             :percentage="percentageOfNumberOne"
                             title="Actual Result"
                         />
@@ -185,9 +185,11 @@
                         :style="{ background: barBackgroundColor, height: barHeight + 'px', width: barWidth + 'px' }"
                     >
                         <div
-                            class="mt-auto"
+                            class="mt-auto text-center pt-3"
                             :style="{ background: barDataBackgroundColor, height: barDataHeight + 'px' }"
-                        ></div>
+                        >
+                            @{{ percentage }}%
+                        </div>
                     </div>
                 </div>
             </v-card>
