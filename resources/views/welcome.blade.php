@@ -69,11 +69,12 @@
                                     />
                                     <v-btn
                                         color="primary"
-                                        elevation="5"
+                                        elevation=5
                                         x-large
+                                        :disabled="!dataFile || dataFile.length == 0 || isLoading"
                                         @click="uploadFile"
                                     >
-                                        Upload
+                                        @{{ isLoading ? 'Uploading...' : 'Upload' }}
                                     </v-btn>
                                     <!-- @{{ dataFile }} -->
                                 </v-card>
@@ -100,6 +101,7 @@
 
                     // === data ===
                     const dataFile = ref(null);
+                    const isLoading = ref(false);
                     const page = reactive({
                         version: '1.0.4',
                     });
@@ -107,8 +109,11 @@
                     // === methods ===
                     const uploadFile = async () => {
                         if (!dataFile.value) {
+                            // This should have been prevented by v-btn `disabled` prop
                             return alert('Please select a file');
                         }
+
+                        isLoading.value = true;
 
                         // console.log('[welcome.blade uploadFile] dataFile.value[0]', dataFile.value[0]);       // For debug only
 
@@ -123,11 +128,13 @@
                         const response = await fetch(url, options);
                         const jsonResponse = await response.json();
 
-                        // console.log('[welcome.blade uploadFile] jsonResponse', jsonResponse);       // For debug only
+                        isLoading.value = false;
+
+                        console.log('[welcome.blade uploadFile] jsonResponse', jsonResponse);       // For debug only
                     };
 
 
-                    return { dataFile, page, uploadFile, version };
+                    return { dataFile, isLoading, page, uploadFile, version };
                 },
 
                 template: '#template-vue',
