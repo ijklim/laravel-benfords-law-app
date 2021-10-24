@@ -43,11 +43,14 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-row style="padding-top:20px;" v-if="percentageOfNumberOne && !isLoading">
+
+                <v-row class="pt-5" v-if="percentageOfNumberOne && !isLoading">
+                    <v-col cols="12" v-html="resultDescription"></v-col>
+
                     <v-col cols="12" sm="6">
                         <bar-chart
                             bar-data-background-color="blue"
-                            percentage=30
+                            :percentage="percentageExpectedOfNumberOne"
                             title="Expected Result"
                         />
                     </v-col>
@@ -76,7 +79,7 @@
         name: 'app',
 
         setup() {
-            const { reactive, ref, version } = Vue;
+            const { computed, reactive, ref, version } = Vue;
 
             // === data ===
             const dataFile = ref(null);
@@ -84,7 +87,34 @@
             const page = reactive({
                 version: '1.0.5',
             });
+            const percentageExpectedOfNumberOne = ref(30);
             const percentageOfNumberOne = ref(null);
+
+
+            // === computed ===
+            const resultDescription = computed(() => {
+                const difference = Math.abs(percentageExpectedOfNumberOne.value - percentageOfNumberOne.value);
+
+                let result = `The result <strong>${percentageOfNumberOne.value}%</strong> is `;
+
+                if (difference < 2) {
+                    result += 'very close to';
+                } else if (difference < 3) {
+                    result += 'quite close to';
+                } else if (difference < 4) {
+                    result += 'close to';
+                } else if (difference < 6) {
+                    result += 'not close to';
+                } else if (difference < 8) {
+                    result += 'different from';
+                } else {
+                    result += 'very different from';
+                }
+
+                result += ` the expected result of <strong>${percentageExpectedOfNumberOne.value}%</strong>`
+
+                return result;
+            });
 
             // === methods ===
             const uploadFile = async () => {
@@ -133,7 +163,7 @@
             };
 
 
-            return { dataFile, isLoading, page, percentageOfNumberOne, uploadFile, version };
+            return { dataFile, isLoading, page, percentageExpectedOfNumberOne, percentageOfNumberOne, resultDescription, uploadFile, version };
         },
 
         template: '#template-vue',
