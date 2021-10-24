@@ -9,6 +9,8 @@ cd laravel-benfords-law-app
 cp .env.example .env
 # Configure docker settings in `.env`
 # Change DOCKER_WEB_PORT_NUMBER to another port number if 80 is already used
+
+php composer.phar install
 ```
 
 ## Access Application
