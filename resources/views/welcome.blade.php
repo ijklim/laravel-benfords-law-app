@@ -141,6 +141,8 @@
 
     const vuetify = Vuetify.createVuetify();
 
+    // v-card: https://vuetifyjs.com/en/components/cards/
+    // d-flex: https://vuetifyjs.com/en/styles/flex
     app.component('bar-chart', {
         template: `
             <v-card elevation=5 :title="title">

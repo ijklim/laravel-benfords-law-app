@@ -34,8 +34,9 @@
         <!-- Javascripts -->
         <!-- https://next.vuetifyjs.com/en/getting-started/installation/ -->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js" integrity="sha512-XdUZ5nrNkVySQBnnM5vzDqHai823Spoq1W3pJoQwomQja+o4Nw0Ew1ppxo5bhF2vMug6sfibhKWcNJsG8Vj9tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.20/vue.global.prod.min.js" integrity="sha512-zKskhmjIMna2pDd9jLBYXFhMXYna2L+grQusZCp85ur5E5WNmILmSVKvcaJhhXKU9O4BL5mGlj4RxTEVLKSGWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.20/vue.global.min.js" integrity="sha512-7+rJYfUeDJTVnG3eVNm+KXhbBQEA1oY3keTh1Cm4NRfxOTvyZHowI0B/ZATiIvwtkVHH1FdYk/Q0u5/ta4pDHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.20/vue.global.js" integrity="sha512-E3RT/CMqjtd8cBi8Tkd8X6XGXmuZ7y3+LRVaygUSFzmbgGazr9O7MKjXsf806cqGgP1n0kYDfviS30qui0nxcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.20/vue.global.js" integrity="sha512-E3RT/CMqjtd8cBi8Tkd8X6XGXmuZ7y3+LRVaygUSFzmbgGazr9O7MKjXsf806cqGgP1n0kYDfviS30qui0nxcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/3.0.0-alpha.11/vuetify.min.js" integrity="sha512-/QfMKSpxhPVgHX5HZxh0+p5TLH+igBuu6L+Fz7QylfzXllyIp0lAY6ZMw3omHkPsGcVc4qo66VE/dBY1MbEhmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body data-version="{{ config('app.version') }}">
