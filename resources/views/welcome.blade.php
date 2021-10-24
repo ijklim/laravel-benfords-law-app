@@ -11,7 +11,7 @@
         </v-navigation-drawer>
 
         <v-app-bar app>
-            <h1>{{ config('app.name') . ' v' . config('app.version') }}</h1>
+            <h1>{{ config('app.name') }}</h1>
         </v-app-bar>
 
         <!-- Sizes your content based upon application components -->
@@ -63,9 +63,9 @@
         </v-main>
 
         <v-footer app>
-            <div class="text-center">
+            <div class="ml-auto">
                 <!-- Tip: Use @ for Laravel Blade to ignore curly braces and allow Vue to process it -->
-                <small>Version @{{ page.version }}</small>
+                Developed with ❤️ by Ivan Lim |  v {{ config('app.version') }}
             </div>
         </v-footer>
     </v-app>
