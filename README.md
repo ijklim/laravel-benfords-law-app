@@ -3,7 +3,7 @@
 ## Installation
 
 ```sh
-git clone ...
+git clone https://github.com/ijklim/laravel-benfords-law-app.git
 
 cd laravel-benfords-law-app
 cp .env.example .env
