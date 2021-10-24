@@ -11,7 +11,7 @@
         </v-navigation-drawer>
 
         <v-app-bar app>
-            <!-- -->
+            <h1>{{ config('app.name') . ' v' . config('app.version') }}</h1>
         </v-app-bar>
 
         <!-- Sizes your content based upon application components -->
