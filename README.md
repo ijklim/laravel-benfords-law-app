@@ -1,5 +1,9 @@
 # Benford's Law App
 
+<p align="center">
+  <img src="https://github.com/ijklim/laravel-benfords-law-app/blob/main/benfords-law-app.gif" width="1000px">
+</p>
+
 ## Installation
 
 ```sh
